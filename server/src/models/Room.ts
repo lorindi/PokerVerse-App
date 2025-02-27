@@ -13,7 +13,6 @@ const RoomSchema = new Schema<IRoom>({
     required: true,
     unique: true,
     trim: true,
-    
   },
   maxPlayers: {
     type: Number,
@@ -32,12 +31,6 @@ const RoomSchema = new Schema<IRoom>({
   ],
 });
 
-RoomSchema.index({ name: 1 });
+// RoomSchema.index({ name: 1 });
 
 export default mongoose.model<IRoom>("Room", RoomSchema);
-
-
-
-
-
-
