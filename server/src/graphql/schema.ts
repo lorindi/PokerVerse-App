@@ -6,23 +6,21 @@ export const typeDefs = gql`
         name:String!
         maxPlayers: Int!
         createdAt: String!
-        players: [Players!]
+        players: [Player!]
     }
 
     type Player {
         id: ID!
         name: String!
         chips: Int!
+        room: Room
         joinedAt: String!
 
     }
 
     type Query {
-        #Room Queries
         rooms: [Room!]!
-        room: (id: ID!): Room
-
-        #Player Queries
+        room(id: ID!): Room 
         players: [Player!]!
         player(id: ID!): Player
         playersByRoom(roomId: ID!): [Player!]!
@@ -30,13 +28,10 @@ export const typeDefs = gql`
     }
 
     type Mutation {
-        #Room Mutations
-        createRoom(name:String!, maxPlayers: Int): Room!
-        deleteRoom(id:ID!):Boolean
-
-        #Player Mutations
+        createRoom(name: String!, maxPlayers: Int): Room!
+        deleteRoom(id: ID!): Boolean!
         createPlayer(name: String!, roomId: ID!): Player!
-        joinRoom(playerId: ID!,roomId:ID!): Player!
+        joinRoom(playerId: ID!,roomId: ID!): Player!
         leaveRoom(playerId:ID!): Player!
     }
 
